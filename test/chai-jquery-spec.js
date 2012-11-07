@@ -342,6 +342,30 @@ describe("jQuery assertions", function(){
     });
   });
 
+  describe("size", function() {
+    var subject = $('<div/><div/>');
+
+    it("passes when number of elements matches the size", function(){
+      subject.should.have.size(2);
+    });
+
+    it("passes negated when number of elements doesn't matche the size", function(){
+      subject.should.not.have.size(1);
+    });
+
+    it("fails when number of elements doesn't match the size", function(){
+      (function(){
+        subject.should.have.size(1);
+      }).should.fail("expected " + inspect(subject) + " to have size 1");
+    });
+
+    it("fails negated when the value matches", function(){
+      (function(){
+        subject.should.not.have.size(2);
+      }).should.fail("expected " + inspect(subject) + " not to have size 2");
+    });
+  });
+
   describe("visible", function(){
     var visible = $('<div></div>');
     var hidden  = $('<div style="display: none;"></div>');

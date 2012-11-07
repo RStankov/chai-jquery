@@ -114,6 +114,15 @@
     );
   });
 
+  chai.Assertion.addMethod('size', function (size) {
+    this.assert(
+        flag(this, 'object').length === size
+      , 'expected #{this} to have size #{exp}'
+      , 'expected #{this} not to have size #{exp}'
+      , size
+    );
+  });
+
   jQuery.each(['visible', 'hidden', 'selected', 'checked', 'disabled'], function (i, attr) {
     chai.Assertion.addProperty(attr, function () {
       this.assert(
